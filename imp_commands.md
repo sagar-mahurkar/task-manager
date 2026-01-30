@@ -35,3 +35,10 @@ tsc --init
   }
 }
 ```
+
+Using uuid for id
+
+```bash
+npm install uuid
+npm install --save-dev @types/uuid
+```
