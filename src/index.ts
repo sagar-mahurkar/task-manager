@@ -1,9 +1,11 @@
 import express, {Response, Request, NextFunction} from "express";
 import { v4 as uuidv4 } from "uuid";
+import { AppDataSource } from "./data-source";
+
 
 const app = express();
 
-const PORT = 8080;
+
 
 // Task interface
 interface Task {
@@ -112,7 +114,19 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-// Server
-app.listen(PORT, () => {
-  console.log(`Server is running at port ${PORT}`);
-})
+// Initiate the connection to the database: Asyn operation
+AppDataSource.initialize()
+  .then(async () => {
+    console.log("DB Connection Successful!!")
+
+    const query = await AppDataSource.query("Select now()")
+    console.log(query);
+
+    // Server
+    const PORT = 8080;
+    app.listen(PORT, () => {
+      console.log(`Server is running at port ${PORT}`);
+    });
+  })
+  .catch((error) => console.log("Error in DB Connection", error));
+

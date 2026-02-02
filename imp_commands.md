@@ -42,3 +42,40 @@ Using uuid for id
 npm install uuid
 npm install --save-dev @types/uuid
 ```
+
+Using typeorm for database entities
+
+```bash
+npm install typeorm
+# postgress driver
+npm install pg
+npm install reflect-metadata
+```
+
+```bash
+touch src/data-source.ts
+```
+
+Add following to tsconfig.json
+
+```json
+"emitDecoratorMetadata": true,
+"experimentalDecorators": true,
+```
+
+```typescript
+// data-source.ts
+export const AppDataSource = new DataSource({
+  type: "postgres",
+  host: "localhost",
+  port: 5432,
+  username: "test",
+  password: "test",
+  database: "test",
+  synchronize: true,
+  logging: true,
+  entities: [Post, Category],
+  subscribers: [],
+  migrations: [],
+})
+```
