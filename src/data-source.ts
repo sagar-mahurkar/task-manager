@@ -1,4 +1,5 @@
 import { DataSource } from "typeorm";
+import { Task } from "./entity/Task";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -9,7 +10,7 @@ export const AppDataSource = new DataSource({
     database: "task_manager",
     synchronize: true,
     logging: false,
-    entities: [],
+    entities: [Task],
     subscribers: [],
     migrations: [],
 })
