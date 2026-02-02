@@ -67,11 +67,11 @@ Add following to tsconfig.json
 // data-source.ts
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "localhost",
+  host: "0.0.0.0",
   port: 5432,
-  username: "test",
-  password: "test",
-  database: "test",
+  username: "postgres",
+  password: "postgres",
+  database: "task_manager",
   synchronize: true,
   logging: true,
   entities: [Post, Category],
@@ -79,3 +79,5 @@ export const AppDataSource = new DataSource({
   migrations: [],
 })
 ```
+
+Create task_manager database from PGAdmin or TablePlus
